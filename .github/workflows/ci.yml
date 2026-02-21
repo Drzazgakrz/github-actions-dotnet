@@ -6,7 +6,7 @@ on:
 
 jobs:
     build:
-        name: PR Verify
+        name: CI
         runs-on: ubuntu-latest
 
         steps:
@@ -21,7 +21,7 @@ jobs:
               run: dotnet test --configuration Release
 
             - name: Publish
-              run: dotnet publish src/GitHubActionsDotNet.API/GitHubActionsDotNet.API.csproj --configuration Release -o artifactcs
+              run: dotnet publish src/GitHubActionsDotNet.Api/GitHubActionsDotNet.Api.csproj --configuration Release -o artifactcs
             
             - uses: actions/upload-artifact@v4
               with: 
