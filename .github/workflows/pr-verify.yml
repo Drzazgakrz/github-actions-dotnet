@@ -15,10 +15,13 @@ jobs:
             - name: Set up .NET Core
               uses: actions/setup-dotnet@v4
               with:
-                dotnet-version: 8.0
+                dotnet-version: 10.0
             
             - name: Build app
               run: dotnet build --configuration Release
             
             - name: Run tests
               run: dotnet test --configuration Release --no-build
+
+            - name: Format code
+              run: dotnet format -v detailed --verify-no-changes
