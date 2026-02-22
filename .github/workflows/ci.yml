@@ -35,6 +35,7 @@ jobs:
       with:
         env:
           dev
+      secrets: inherit
 
     deploy_prod:
       name: Deploy prod
@@ -43,6 +44,7 @@ jobs:
       with:
         env:
           prod
+      secrets: inherit
 
     # deploy_dev:
     #   name: deploy dev
