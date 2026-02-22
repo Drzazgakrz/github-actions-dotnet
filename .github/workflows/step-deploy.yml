@@ -6,6 +6,12 @@ on:
             env:
                 required: true
                 type: string
+            resource_group_name:
+                required: true
+                type: string
+            app_service_name:
+                required: true
+                type: string
         secrets:
             AZURE_CLIENT_ID:
                 required: true
@@ -37,5 +43,9 @@ jobs:
             - name: "Run Azure webapp deploy action using publish profile credentials"
               uses: azure/webapps-deploy@v2
               with:
-                  app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
+                  slot-name: slot #set for zero downtime deployment
                   package: aartifacts/
+            
+            - name: Swap slots
+              run: |
+                az webapp deployment slot swap -g ${{inputs.resource_group_name}} -n ${{inputs.app_service_name}} --slot slot --target-slot production --verbose
