@@ -33,8 +33,9 @@ jobs:
       needs: build
       uses: ./.github/workflows/step-deploy.yml
       with:
-        env:
-          dev
+        env: dev
+        resource_group_name: azure-group-name
+        app_service_name: app-service-name
       secrets: inherit
 
     deploy_prod:
@@ -42,8 +43,9 @@ jobs:
       needs: deploy_dev
       uses: ./.github/workflows/step-deploy.yml
       with:
-        env:
-          prod
+        env: prod
+        resource_group_name: azure-group-name
+        app_service_name: app-service-name
       secrets: inherit
 
     # deploy_dev:
